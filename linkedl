@@ -1,0 +1,71 @@
+class node:
+    def _init_(self,val):
+        self.val=val
+        self.next=None
+
+def insert_end(val):
+    global head
+    global tail
+    nn=node(val)
+    if head==None and tail==None:
+        head=nn
+        tail=nn
+    else:
+        tail.next=nn
+        tail=nn
+
+        
+def insert_front(val):
+    global head
+    global tail
+    nn=node(val)
+    if head==None and tail==None:
+        head=nn
+        tail=nn
+    else:
+        nn.next=head
+        head=nn
+        
+def insert_pos(val,pos):
+    global head
+    global tail
+    nn=node(val)
+    if head==None and tail==None:
+        head=nn
+        tail=nn
+    else:
+        temp=head
+        while pos-2:
+            temp=temp.next
+            pos-=1
+        nn.next=temp.next
+        temp.next=nn
+        
+def display():
+    global head
+    if head==None:
+        print("no node")
+    else:
+        temp=head
+        while temp:
+            print(temp.val)
+            temp=temp.next
+
+head=None
+tail=None
+while(True):
+    ch=int(input("1.insert_end 2.insert_front 3.insert_pos   4.display  5.exit"))
+    if ch==1:
+        val=int(input())
+        insert_end(val)
+    elif ch==4:
+        display()
+    elif ch==2:
+        val=int(input())
+        insert_front(val)
+    elif ch==3:
+        val=int(input("enter the value "))
+        pos=int(input("enter the position "))
+        insert_pos(val,pos)
+    elif ch==5:
+        break
